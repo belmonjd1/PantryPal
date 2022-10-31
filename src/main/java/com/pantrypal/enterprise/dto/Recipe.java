@@ -6,5 +6,6 @@ import java.util.ArrayList;
 public @Data class Recipe {
     private int recipeId;
     private ArrayList<String> ingredientList;
+    private String name;
     private String description;
 }
