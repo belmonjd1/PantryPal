@@ -8,4 +8,8 @@ public interface IRecipeDAO {
     Recipe save(Recipe recipe) throws Exception;
 
     List<Recipe> fetchAll();
+
+    Recipe fetch(int id);
+
+    void delete(int id);
 }

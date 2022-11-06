@@ -5,6 +5,8 @@ import com.pantrypal.enterprise.dto.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RecipeServiceStub implements IRecipeService {
 
@@ -17,12 +19,14 @@ public class RecipeServiceStub implements IRecipeService {
 
     @Override
     public Recipe fetchById(int id) {
-        Recipe recipe = new Recipe();
-        recipe.setName("Pizza");
-        recipe.setRecipeId(420);
+        Recipe foundRecipe = recipeDAO.fetch(id);
         return recipe;
     }
 
+    @Override
+    public void delete(int id) throws Exception {
+        recipeDAO.delete(id);
+    }
     @Override
     public Recipe save(Recipe recipe) throws Exception {
         return recipeDAO.save(recipe);

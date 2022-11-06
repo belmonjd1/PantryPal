@@ -1,8 +1,12 @@
 package com.pantrypal.enterprise;
 
+
+
 import com.pantrypal.enterprise.dto.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +36,10 @@ public class PantryPalController {
 
     @GetMapping("/recipe/{id}")
     public ResponseEntity fetchRecipeById(@PathVariable("id") String id) {
-        return new ResponseEntity(HttpStatus.OK);
+        Recipe foundRecipe = recipeService.fetchById(Integer.parseInt(id));
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        return new ResponseEntity(foundRecipe, headers, HttpStatus.OK);
     }
 
     @PostMapping(value="/recipe", consumes="application/json", produces="application/json")
@@ -50,6 +57,13 @@ public class PantryPalController {
 
     @DeleteMapping("/recipe/{id}/")
     public ResponseEntity deleteRecipe(@PathVariable("id") String id) {
-        return new ResponseEntity(HttpStatus.OK);
+        try {
+            recipeService.delete(Integer.parseInt(id));
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+
     }
 }
