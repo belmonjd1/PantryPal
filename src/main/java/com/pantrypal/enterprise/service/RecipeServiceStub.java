@@ -2,11 +2,13 @@ package com.pantrypal.enterprise.service;
 
 import com.pantrypal.enterprise.dao.IRecipeDAO;
 import com.pantrypal.enterprise.dto.Recipe;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class RecipeServiceStub implements IRecipeService {
 
+    @Autowired
     private IRecipeDAO recipeDAO;
 
     public RecipeServiceStub() {}
@@ -24,5 +26,10 @@ public class RecipeServiceStub implements IRecipeService {
     @Override
     public Recipe save(Recipe recipe) throws Exception {
         return recipeDAO.save(recipe);
+    }
+
+    @Override
+    public List<Recipe> fetchAll() {
+        return recipeDAO.fetchAll();
     }
 }
