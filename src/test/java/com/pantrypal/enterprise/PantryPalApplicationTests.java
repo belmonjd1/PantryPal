@@ -30,8 +30,20 @@ class PantryPalApplicationTests {
     @Test
     void fetchRecipeById_returnsPizzaForId420() throws Exception {
         givenRecipeDataAreAvailable();
+        whenRecipe420AddedIsPizza();
         whenSearchRecipeWithId420();
         thenReturnOnePizzaRecipeForId420();
+    }
+
+    private void whenRecipe420AddedIsPizza() {
+        Recipe pizza = new Recipe();
+        pizza.setRecipeID("420");
+        pizza.setDescription("Pizza");
+        Mockito.when(recipeDAO.fetch(id: 420)).thenReturn(pizza);
+    }
+
+    private void thenReturn(Recipe pizza) {
+
     }
 
     private void givenRecipeDataAreAvailable() throws Exception {
