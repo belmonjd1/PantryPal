@@ -35,6 +35,13 @@ public class PantryPalController {
         return "start";
     }
 
+    @RequestMapping("/saveRecipe")
+    public String saveRecipe(Recipe recipe) {
+
+        recipeService.save(recipe);
+        return "start";
+    }
+
     @GetMapping("/recipe")
     @ResponseBody
     public List<Recipe> fetchAllRecipes() {

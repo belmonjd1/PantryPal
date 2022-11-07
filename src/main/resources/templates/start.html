@@ -7,5 +7,13 @@
 <body>
 This is the initial PantryPal start page.
 <p th:text="${recipe}" />
+
+<form action="#" th:action="@{/saveRecipe}" th:object="${recipe}" method="GET"><br />
+    <label>Ingredients</label><input type="text" name="ingredients" th:field="*{ingredients}"/><br />
+    <label>Description</label><input type="text" name="description" th:field="*{description}"/><br />
+    <label>Instructions</label><input type="text" name="instructions" th:field="*{instructions}"/><br />
+    <button name="Find" type="find" value="0">Find</button>
+
+</form>
 </body>
 </html>
