@@ -5,6 +5,11 @@
     <title>PantryPal</title>
 </head>
 <body>
+    <form action="#" th:action="@{/recipes}" method="GET">
+        <label for="searchTerm">Search</label><input type="text" name="searchTerm" id="searchTerm"/>
+        <button name="submit" type="submit" value="0">Search</button>
+    </form>
+
     This is the initial PantryPal start page.
     <p th:text="${recipe}"/>
 

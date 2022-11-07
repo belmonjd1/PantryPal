@@ -81,4 +81,9 @@ public class PantryPalController {
         }
     }
 
+    @GetMapping("/recipes")
+    public ResponseEntity searchRecipes(@RequestParam(value="searchTerm", required=false, defaultValue="None") String searchTerm) {
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
 }
