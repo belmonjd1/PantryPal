@@ -18,15 +18,11 @@ public class RecipeServiceStub implements IRecipeService {
     public RecipeServiceStub(IRecipeDAO recipeDAO) { this.recipeDAO = recipeDAO; }
 
     @Override
-    public Recipe fetchById(int id) {
-        Recipe foundRecipe = recipeDAO.fetch(id);
-        return recipe;
-    }
+    public Recipe fetchById(int id) { return recipeDAO.fetch(id); }
 
     @Override
-    public void delete(int id) throws Exception {
-        recipeDAO.delete(id);
-    }
+    public void delete(int id) { recipeDAO.delete(id); }
+
     @Override
     public Recipe save(Recipe recipe) throws Exception {
         return recipeDAO.save(recipe);

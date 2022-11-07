@@ -6,7 +6,6 @@ import com.pantrypal.enterprise.service.IRecipeService;
 import com.pantrypal.enterprise.service.RecipeServiceStub;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
@@ -35,20 +34,16 @@ class PantryPalApplicationTests {
         thenReturnOnePizzaRecipeForId420();
     }
 
-    private void whenRecipe420AddedIsPizza() {
-        Recipe pizza = new Recipe();
-        pizza.setRecipeID("420");
-        pizza.setDescription("Pizza");
-        Mockito.when(recipeDAO.fetch(id: 420)).thenReturn(pizza);
-    }
-
-    private void thenReturn(Recipe pizza) {
-
-    }
-
     private void givenRecipeDataAreAvailable() throws Exception {
         Mockito.when(recipeDAO.save(recipe)).thenReturn(recipe);
         recipeService = new RecipeServiceStub(recipeDAO);
+    }
+
+    private void whenRecipe420AddedIsPizza() {
+        Recipe pizza = new Recipe();
+        pizza.setRecipeId(420);
+        pizza.setDescription("Pizza");
+        Mockito.when(recipeDAO.fetch(420)).thenReturn(pizza);
     }
 
     private void whenSearchRecipeWithId420() { recipe = recipeService.fetchById(420); }
@@ -75,4 +70,5 @@ class PantryPalApplicationTests {
         assertEquals(recipe, createdRecipe);
         verify(recipeDAO, atLeastOnce()).save(recipe);
     }
+
 }

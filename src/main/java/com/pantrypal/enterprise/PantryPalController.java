@@ -3,6 +3,7 @@ package com.pantrypal.enterprise;
 
 
 import com.pantrypal.enterprise.dto.Recipe;
+import com.pantrypal.enterprise.service.IRecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,7 @@ import java.util.List;
 public class PantryPalController {
 
     @Autowired
-    iRecipeService recipeService;
+    IRecipeService recipeService;
 
     /**
      * Handle the root (/) endpoint and return a start page.
@@ -45,14 +46,12 @@ public class PantryPalController {
     @PostMapping(value="/recipe", consumes="application/json", produces="application/json")
     public Recipe createRecipe(@RequestBody Recipe recipe) {
         Recipe newRecipe = null;
-        {
-        }
         try {
-            recipeService.save(recipe);
+            newRecipe = recipeService.save(recipe);
         } catch (Exception e) {
             // TODO add logging
         }
-        return recipe;
+        return newRecipe;
     }
 
     @DeleteMapping("/recipe/{id}/")
@@ -62,8 +61,7 @@ public class PantryPalController {
             return new ResponseEntity(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-
         }
-
     }
+
 }
