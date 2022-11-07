@@ -2,7 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PantryPal</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </head>
 <body>
     <form action="#" th:action="@{/recipes}" method="GET">
@@ -14,10 +18,22 @@
     <p th:text="${recipe}"/>
 
     <form action="#" th:action="@{/saveRecipe}" th:object="${recipe}" method="GET">
-        <label>Name</label><input type="text" name="name" th:field="*{name}"/><br />
-        <label>Recipe ID</label><input type="text" name="recipeId" th:field="*{recipeId}"/><br />
-        <label>Ingredients</label><input type="text" name="ingredients" th:field="*{ingredientList}"/><br />
-        <label>Description</label><input type="text" name="description" th:field="*{description}"/><br />
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="name">Name</span>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="name" th:field="*{name}">
+        </div>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="recipeId">Recipe ID</span>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="recipeId" th:field="*{recipeId}">
+        </div>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="ingredients">Ingredients</span>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="ingredients" th:field="*{ingredientList}">
+        </div>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="description">Description</span>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="description" th:field="*{description}">
+        </div>
         <button name="submit" type="submit" value="0">Submit</button>
     </form>
 </body>
