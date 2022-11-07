@@ -18,13 +18,20 @@ public class PantryPalController {
 
     @Autowired
     iRecipeService recipeService;
+    private Model model;
 
     /**
      * Handle the root (/) endpoint and return a start page.
      * @return
      */
     @RequestMapping("/")
-    public String index() {
+    public String index(Model model) {
+        this.model = model;
+        Recipe recipe = new Recipe();
+        recipe.setDescription("Recipes on a budget");
+        recipe.setRecipeId(Integer.parseInt("1000"));
+        recipe.setRecipeId(84);
+        model.addAttribute(recipe);
         return "start";
     }
 
