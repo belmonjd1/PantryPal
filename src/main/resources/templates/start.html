@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>PantryPal</title>
 </head>
 <body>
-This is the initial PantryPal start page.
+    This is the initial PantryPal start page.
+    <p th:text="${recipe}"/>
+
+    <form action="#" th:action="@{/saveRecipe}" th:object="${recipe}" method="GET">
+        <label>Name</label><input type="text" name="name" th:field="*{name}"/><br />
+        <label>Recipe ID</label><input type="text" name="recipeId" th:field="*{recipeId}"/><br />
+        <label>Ingredients</label><input type="text" name="ingredients" th:field="*{ingredientList}"/><br />
+        <label>Description</label><input type="text" name="description" th:field="*{description}"/><br />
+        <button name="submit" type="submit" value="0">Submit</button>
+    </form>
 </body>
 </html>

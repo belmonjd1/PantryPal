@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +26,23 @@ public class PantryPalController {
      * @return
      */
     @RequestMapping("/")
-    public String index() {
+    public String index(Model model) {
+        Recipe recipe = new Recipe();
+        recipe.setRecipeId(24);
+        recipe.setName("Grilled Cheese");
+        recipe.setDescription("Cooking steps");
+        model.addAttribute(recipe);
+        return "start";
+    }
+
+    @RequestMapping("/saveRecipe")
+    public String saveRecipe(Recipe recipe) {
+        try {
+            recipeService.save(recipe);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "start";
+        }
         return "start";
     }
 
