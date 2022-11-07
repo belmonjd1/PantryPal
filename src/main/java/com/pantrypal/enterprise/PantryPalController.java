@@ -86,4 +86,9 @@ public class PantryPalController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    @RequestMapping("/favorites")
+    public String favorites() {
+        return "favorites";
+    }
+
 }
