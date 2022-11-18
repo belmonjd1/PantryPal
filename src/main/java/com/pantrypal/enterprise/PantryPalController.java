@@ -2,6 +2,7 @@ package com.pantrypal.enterprise;
 
 
 
+import com.pantrypal.enterprise.dto.FoundRecipe;
 import com.pantrypal.enterprise.dto.Recipe;
 import com.pantrypal.enterprise.service.IRecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -81,9 +83,17 @@ public class PantryPalController {
         }
     }
 
-    @GetMapping("/recipes")
+    @GetMapping("/foundRecipes")
     public ResponseEntity searchRecipes(@RequestParam(value="searchTerm", required=false, defaultValue="None") String searchTerm) {
-        return new ResponseEntity(HttpStatus.OK);
+        try {
+            FoundRecipe recipes = recipeService.fetchRecipes(searchTerm);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            return new ResponseEntity(recipes, headers, HttpStatus.OK);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @RequestMapping("/favorites")

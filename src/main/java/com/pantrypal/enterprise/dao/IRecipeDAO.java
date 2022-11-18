@@ -12,4 +12,5 @@ public interface IRecipeDAO {
     Recipe fetch(int id);
 
     void delete(int id);
+
 }

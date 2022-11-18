@@ -1,6 +1,9 @@
 package com.pantrypal.enterprise.service;
 
+import com.pantrypal.enterprise.dto.FoundRecipe;
 import com.pantrypal.enterprise.dto.Recipe;
+
+import java.io.IOException;
 import java.util.List;
 public interface IRecipeService {
     Recipe fetchById(int id);
@@ -12,4 +15,6 @@ public interface IRecipeService {
     default List<Recipe> fetchAll() {
         return null;
     }
+
+    FoundRecipe fetchRecipes(String recipeName) throws IOException;
 }
