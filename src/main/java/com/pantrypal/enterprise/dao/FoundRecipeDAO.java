@@ -7,7 +7,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 import java.io.IOException;
-import java.util.List;
 
 @Repository
 public class FoundRecipeDAO implements IFoundRecipeDAO {
@@ -17,7 +16,6 @@ public class FoundRecipeDAO implements IFoundRecipeDAO {
         IFoundRecipeRetrofitDAO foundRecipeRetrofitDAO = retrofitInstance.create(IFoundRecipeRetrofitDAO.class);
         Call<FoundRecipe> allRecipes = foundRecipeRetrofitDAO.getRecipes(recipeName);
         Response<FoundRecipe> execute = allRecipes.execute();
-        FoundRecipe recipes = execute.body();
-        return recipes;
+        return execute.body();
     }
 }
